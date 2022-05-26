@@ -38,20 +38,17 @@ tf.rank(rank2_tensor) # <tf.Tensor: shape=(), dtype=int32, numpy=2>
 #rank2_tensor.shape # TensorShape([3, 2])
 ```
 
-### Changing Shape
-
-The number of elements of a tensor is the product of the sizes of all its shapes. There are often many shapes that have the same number of elements, making it convient to be able to change the shape of a tensor.
+### Changing Shape ro Dimention
 
 ```py
-tensor1 = tf.ones([1,2,3])  # tf.ones() creates a shape [1,2,3] tensor full of ones
-tensor2 = tf.reshape(tensor1, [2,3,1])  # reshape existing data to shape [2,3,1]
-tensor3 = tf.reshape(tensor2, [3, -1])  # -1 tells the tensor to calculate the size of the dimension in that place
-# this will reshape the tensor to [3,3]
-
-# The numer of elements in the reshaped tensor MUST match the number in the original
+tensor1 = tf.ones([1,2,3])  # tf.ones() creates a shape [1,2,3] tensor full of ones (6 elements of 1)
+tensor2 = tf.reshape(tensor1, [2,3,1])  # reshape existing data to shape [2,3,1] => 2 list, each with 3 list containing 1 element
+tensor3 = tf.reshape(tensor2, [3,-1])  # -1 tells the tensor to calculate the size of the dimension in that place automatically
+# this will reshape the tensor to [3,2]
+# only single input can be -1 for automatic dimention calculation
+                                                                            
 
 print(tensor1)
 print(tensor2)
 print(tensor3)
-# Notice the changes in shape
 ```

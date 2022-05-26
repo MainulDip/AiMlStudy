@@ -86,3 +86,21 @@ print(row_2_and_4) # tf.Tensor([[ 6  7  8  9 10] [16 17 18 19 20]], shape=(2, 5)
 column_1_in_row_2_and_3 = tensor[1:3, 0]
 print(column_1_in_row_2_and_3) # tf.Tensor([ 6 11], shape=(2,), dtype=int32)
 ```
+
+### Types of Tensors
+
+Before we go to far, I will mention that there are diffent types of tensors. These are the most used and we will talk more in depth about each as they are used.
+
+    Variable
+    Constant
+    Placeholder
+    SparseTensor
+
+With the execption of Variable all these tensors are immuttable, meaning their value may not change during execution.
+
+For now, it is enough to understand that we use the Variable tensor when we want to potentially change the value of our tensor.
+Sources
+
+Most of the information is taken direclty from the TensorFlow website which can be found below.
+
+https://www.tensorflow.org/guide/tensor

@@ -79,6 +79,7 @@ Before we continue and create/train a model we must convet our categorical data 
 Fortunately for us TensorFlow has some tools to help!
 
 ```py
+# Creating Feature Column on Tensor Flow's column format
 CATEGORICAL_COLUMNS = ['sex', 'n_siblings_spouses', 'parch', 'class', 'deck',
                        'embark_town', 'alone']
 NUMERIC_COLUMNS = ['age', 'fare']
@@ -86,10 +87,27 @@ NUMERIC_COLUMNS = ['age', 'fare']
 feature_columns = []
 for feature_name in CATEGORICAL_COLUMNS:
   vocabulary = dftrain[feature_name].unique()  # gets a list of all unique values from given feature column
+  # EX: dftrain['sex'].unique() will output array(['male', 'female'], dtype=object)
   feature_columns.append(tf.feature_column.categorical_column_with_vocabulary_list(feature_name, vocabulary))
-
+  # this will convert the columns into numeric data into tensorflow's numeric format and store that into feature_columns list
 for feature_name in NUMERIC_COLUMNS:
   feature_columns.append(tf.feature_column.numeric_column(feature_name, dtype=tf.float32))
 
-print(feature_columns)
+print(feature_columns) 
 ```
+
+### Traning Process:
+For this specific model data is going to be streamed into it in small batches of 32. This means we will not feed the entire dataset to our model at once, but simply small batches of entries. We will feed these batches to our model multiple times according to the number of epochs.
+
+An epoch is simply one stream of our entire dataset. The number of epochs we define is the amount of times our model will see the entire dataset. We use multiple epochs in hope that after seeing the same data multiple times the model will better determine how to estimate it.
+
+Ex. if we have 10 ephocs, our model will see the same dataset 10 times.
+
+Since we need to feed our data in batches and multiple times, we need to create something called an input function. The input function simply defines how our dataset will be converted into batches at each epoch.
+
+
+### Input Function
+
+The TensorFlow model we are going to use requires that the data we pass it comes in as a tf.data.Dataset object. This means we must create a input function that can convert our current pandas dataframe into that object.
+
+Straight from the TensorFlow documentation (https://www.tensorflow.org/tutorials/estimator/linear)

@@ -60,3 +60,36 @@ y_train = dftrain.pop('survived') # cutting survived data and putting it on its 
 y_eval = dfeval.pop('survived')
 print(dftrain.loc[0], y_eval.loc[0])
 ```
+
+### Training vs Testing Data:
+we loaded two different datasets (csv) above. This is because when we train models, we need two sets of data: training and testing.
+
+The training data is what we feed to the model so that it can develop and learn. It is usually a much larger size than the testing data.
+
+The testing data is what we use to evaulate the model and see how well it is performing. We must use a seperate set of data that the model has not been trained on to evaluate it.
+
+### Feature Columns: (Feature is the input information. Lable is the predection)
+
+In the csvs we have two different kinds of information: Categorical and Numeric
+
+Our categorical data is anything that is not numeric! For example, the sex column does not use numbers, it uses the words "male" and "female".
+
+Before we continue and create/train a model we must convet our categorical data into numeric data. We can do this by encoding each category with an integer (ex. male = 1, female = 2).
+
+Fortunately for us TensorFlow has some tools to help!
+
+```py
+CATEGORICAL_COLUMNS = ['sex', 'n_siblings_spouses', 'parch', 'class', 'deck',
+                       'embark_town', 'alone']
+NUMERIC_COLUMNS = ['age', 'fare']
+
+feature_columns = []
+for feature_name in CATEGORICAL_COLUMNS:
+  vocabulary = dftrain[feature_name].unique()  # gets a list of all unique values from given feature column
+  feature_columns.append(tf.feature_column.categorical_column_with_vocabulary_list(feature_name, vocabulary))
+
+for feature_name in NUMERIC_COLUMNS:
+  feature_columns.append(tf.feature_column.numeric_column(feature_name, dtype=tf.float32))
+
+print(feature_columns)
+```

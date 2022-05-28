@@ -150,4 +150,7 @@ print(result['accuracy'])  # the result variable is simply a dict of stats about
 result = list(linear_est.predict(eval_input_fn))
 clear_output()
 print(result)
+print('dfeval',dfeval.loc[1])
+print('y-eval',y_eval.loc[1]) # y_eval is the popped out survived eval data for prediction testing
+print(result[1]['probabilities'])
 ```

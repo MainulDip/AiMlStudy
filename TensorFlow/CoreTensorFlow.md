@@ -6,7 +6,7 @@ Commonly used these 4 algorithms
     Clustering
     Hidden Markov Models
 
-### Linear Regression:
+## Linear Regression:
 Linear regression follows a very simple concept. If data points are related linearly, we can generate a line of best fit for these points and use it to predict future values.
 
 ```py
@@ -145,7 +145,7 @@ clear_output()  # clears consoke output
 print(result['accuracy'])  # the result variable is simply a dict of stats about our model
 ```
 
-### Prediction Testing:
+### Prediction and Probabilities Accuracy Testing:
 ```py
 result = list(linear_est.predict(eval_input_fn))
 clear_output()
@@ -154,3 +154,18 @@ print('dfeval',dfeval.loc[1])
 print('y-eval',y_eval.loc[1]) # y_eval is the popped out survived eval data for prediction testing
 print(result[1]['probabilities'])
 ```
+
+### Predictin:
+We can use the .predict() method to get survival probabilities from the model. This method will return a list of dicts that store a predicition for each of the entries in our testing data set. Below we've used some pandas magic to plot a nice graph of the predictions.
+```py
+pred_dicts = list(linear_est.predict(eval_input_fn))
+probs = pd.Series([pred['probabilities'][1] for pred in pred_dicts])
+clear_output()
+probs.plot(kind='hist', bins=20, title='predicted survival probabilities')
+```
+
+## Classification
+
+Where regression was used to predict a numeric value, classification is used to seperate data points into classes of different labels. In this example we will use a TensorFlow estimator to classify flowers.
+
+https://www.tensorflow.org/tutorials/estimator/premade

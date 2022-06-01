@@ -212,3 +212,41 @@ train.head() # the species column is now gone
 
 train.shape  # we have 120 entires with 4 features
 ```
+
+### Input Function and Feature Column With Classification:
+```py
+def input_fn(features, labels, training=True, batch_size=256):
+    # Convert the inputs to a Dataset.
+    dataset = tf.data.Dataset.from_tensor_slices((dict(features), labels))
+
+    # Shuffle and repeat if you are in training mode.
+    if training:
+        dataset = dataset.shuffle(1000).repeat()
+    
+    return dataset.batch(batch_size)
+
+# Feature columns describe how to use the input.
+my_feature_columns = []
+for key in train.keys():
+    my_feature_columns.append(tf.feature_column.numeric_column(key=key))
+print(my_feature_columns)
+```
+
+### Building the Model
+For classification tasks there are variety of different estimators/models that we can pick from. Some options are listed below.
+- ```DNNClassifier``` (Deep Neural Network)
+- ```LinearClassifier```
+
+We can choose either model but the DNN seems to be the best choice. This is because we may not be able to find a linear coorespondence in our data.
+
+```py
+# Build a DNN with 2 hidden layers with 30 and 10 hidden nodes each.
+classifier = tf.estimator.DNNClassifier(
+    feature_columns=my_feature_columns,
+    # Two hidden layers of 30 and 10 nodes respectively.
+    hidden_units=[30, 10],
+    # The model must choose between 3 classes.
+    n_classes=3)
+```
+
+Note: What we've just done is created a deep neural network that has two hidden layers. These layers have 30 and 10 neurons respectively. This is the number of neurons the TensorFlow official tutorial uses so we'll stick with it. However, it is worth mentioning that the number of hidden neurons is an arbitrary number and many experiments and tests are usually done to determine the best choice for these values. Try playing around with the number of hidden neurons and see if your results change.

@@ -250,3 +250,22 @@ classifier = tf.estimator.DNNClassifier(
 ```
 
 Note: What we've just done is created a deep neural network that has two hidden layers. These layers have 30 and 10 neurons respectively. This is the number of neurons the TensorFlow official tutorial uses so we'll stick with it. However, it is worth mentioning that the number of hidden neurons is an arbitrary number and many experiments and tests are usually done to determine the best choice for these values. Try playing around with the number of hidden neurons and see if your results change.
+
+### Traning:
+```py
+classifier.train(
+    input_fn=lambda: input_fn(train, train_y, training=True),
+    steps=5000)
+# We include a lambda to avoid creating an inner function previously
+```
+
+The only thing to explain here is the steps argument. This simply tells the classifier to run for 5000 steps. Try modifiying this and seeing if your results change. Keep in mind that more is not always better.
+
+### Evalution:
+
+```py
+eval_result = classifier.evaluate(
+    input_fn=lambda: input_fn(test, test_y, training=False))
+
+print('\nTest set accuracy: {accuracy:0.3f}\n'.format(**eval_result))
+```

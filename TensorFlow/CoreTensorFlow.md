@@ -338,7 +338,7 @@ train_y = train.pop('Species')
 test_y = test.pop('Species')
 
 # Input function
-def input_fn(features, labels, training=True, batch_size=256):
+def input_fn_Train_or_Evalution(features, labels, training=True, batch_size=256):
     # Convert the inputs to a Dataset.
     dataset = tf.data.Dataset.from_tensor_slices((dict(features), labels))
 
@@ -352,7 +352,7 @@ def input_fn(features, labels, training=True, batch_size=256):
 my_feature_columns = []
 for key in train.keys():
     my_feature_columns.append(tf.feature_column.numeric_column(key=key))
-print(my_feature_columns)
+# print(my_feature_columns)
 
 
 # model selection  => Build a DNN with 2 hidden layers with 30 and 10 hidden nodes each.
@@ -365,19 +365,21 @@ classifier = tf.estimator.DNNClassifier(
 
 # Traning
 classifier.train(
-    input_fn=lambda: input_fn(train, train_y, training=True),
+    input_fn=lambda: input_fn_Train_or_Evalution(train, train_y, training=True),
     steps=5000)
 # We include a lambda to avoid creating an inner function previously
 
 # Evalution
 eval_result = classifier.evaluate(
-    input_fn=lambda: input_fn(test, test_y, training=False))
+    input_fn=lambda: input_fn_Train_or_Evalution(test, test_y, training=False))
 
+clear_output()
+print(my_feature_columns)
 print('\nTest set accuracy: {accuracy:0.3f}\n'.format(**eval_result))
 
 
 # Prediction
-def input_fn(features, batch_size=256):
+def input_fn_prediction(features, batch_size=256):
     # Convert the inputs to a Dataset without labels.
     return tf.data.Dataset.from_tensor_slices(dict(features)).batch(batch_size)
 
@@ -393,7 +395,7 @@ for feature in features:
 
   predict[feature] = [float(val)]
 
-predictions = classifier.predict(input_fn=lambda: input_fn(predict))
+predictions = classifier.predict(input_fn=lambda: input_fn_prediction(predict))
 for pred_dict in predictions:
     class_id = pred_dict['class_ids'][0]
     probability = pred_dict['probabilities'][class_id]

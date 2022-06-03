@@ -269,3 +269,55 @@ eval_result = classifier.evaluate(
 
 print('\nTest set accuracy: {accuracy:0.3f}\n'.format(**eval_result))
 ```
+
+Notice this time we didn't specify the number of steps. This is because during evaluation the model will only look at the testing data one time.
+
+
+
+### Prediction
+
+```py
+def input_fn(features, batch_size=256):
+    # Convert the inputs to a Dataset without labels.
+    return tf.data.Dataset.from_tensor_slices(dict(features)).batch(batch_size)
+
+features = ['SepalLength', 'SepalWidth', 'PetalLength', 'PetalWidth']
+predict = {}
+
+print("Please type numeric values as prompted.")
+for feature in features:
+  valid = True
+  while valid: 
+    val = input(feature + ": ")
+    if not val.isdigit(): valid = False
+
+  predict[feature] = [float(val)]
+
+predictions = classifier.predict(input_fn=lambda: input_fn(predict))
+for pred_dict in predictions:
+    class_id = pred_dict['class_ids'][0]
+    probability = pred_dict['probabilities'][class_id]
+
+    print('Prediction is "{}" ({:.1f}%)'.format(
+        SPECIES[class_id], 100 * probability))
+
+```
+
+### Example Input:
+```py
+# Here is some example input and expected classes you can try above
+expected = ['Setosa', 'Versicolor', 'Virginica']
+predict_x = {
+    'SepalLength': [5.1, 5.9, 6.9],
+    'SepalWidth': [3.3, 3.0, 3.1],
+    'PetalLength': [1.7, 4.2, 5.4],
+    'PetalWidth': [0.5, 1.5, 2.1],
+}
+```
+
+
+### Clustering
+
+Clustering is a Machine Learning technique that involves the grouping of data points. In theory, data points that are in the same group should have similar properties and/or features, while data points in different groups should have highly dissimilar properties and/or features. (https://towardsdatascience.com/the-5-clustering-algorithms-data-scientists-need-to-know-a36d136ef68)
+
+Unfortunalty there are issues with the current version of TensorFlow and the implementation for KMeans. This means we cannot use KMeans without writing the algorithm from scratch. We aren't quite at that level yet, so we'll just explain the basics of clustering for now.

@@ -25,6 +25,7 @@ class SketchPad {
             // console.log(mouse)
 
             // update class props
+            // path = [[x,y],[x,y],[x,y],...] and mouse = [x,y]
             this.path = [mouse]
             this.isDrawing = true
         }
@@ -34,9 +35,9 @@ class SketchPad {
             if (this.isDrawing) {
                 const mouse = this.#getMouse(evt)
 
-                // update class props
+                // update class props with array of x & y mouse coordinate | [[x,y],[x,y],[x,y],...]
                 this.path.push(mouse)
-                console.log(this.path.length)
+                console.log(this.path)
 
                 // call the drawing method as redraw
                 this.#reDraw()
@@ -50,6 +51,7 @@ class SketchPad {
 
     #getMouse = (evt) => {
         const rect = this.canvas.getBoundingClientRect();
+        // returning back array x and y (2d) position of mouse while on pressed
         return [
             Math.round(evt.clientX - rect.left),
             Math.round(evt.clientY - rect.top)

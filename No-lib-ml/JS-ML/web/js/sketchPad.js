@@ -6,14 +6,30 @@ class SketchPad {
         this.canvas.style = `background-color: white; box-shadow: 0px 0px 10px 2px black; `
 
         container.appendChild(this.canvas)
+
+        // line break and undo button
+        const lineBreak = document.createElement("br")
+        container.appendChild(lineBreak)
+        this.undoBtn = document.createElement("button")
+        this.undoBtn.innerHTML = "UNDO"
+        container.appendChild(this.undoBtn)
+
+
+        // getting canvas 2d context
         this.ctx = this.canvas.getContext("2d")
+
+        // set some class property and populate them from those listeners
+        this.paths = []
+        this.isDrawing = false
+
+        // prevent the undo button from being activated
+        this.#reDraw()
 
         // call an event listener
         this.#addEventListeners();
 
-        // set some class property and populate them from those listeners
-        this.path = []
-        this.isDrawing = false
+        
+        
     }
 
     // hash "#" denotes it as private method
@@ -26,7 +42,7 @@ class SketchPad {
 
             // update class props
             // path = [[x,y],[x,y],[x,y],...] and mouse = [x,y]
-            this.path = [mouse]
+            this.paths.push([mouse])
             this.isDrawing = true
         }
 
@@ -36,7 +52,9 @@ class SketchPad {
                 const mouse = this.#getMouse(evt)
 
                 // update class props with array of x & y mouse coordinate | [[x,y],[x,y],[x,y],...]
-                this.path.push(mouse)
+                // get the last path position
+                const lastPath = this.paths[this.paths.length - 1]
+                lastPath.push(mouse)
                 console.log(this.path)
 
                 // call the drawing method as redraw
@@ -46,6 +64,27 @@ class SketchPad {
 
         this.canvas.onmouseup = () => {
             this.isDrawing = false
+        }
+
+        // touch events
+        this.canvas.ontouchstart = (evt) => {
+            const loc = evt.touches[0]
+            this.canvas.onmousedown(loc)
+        }
+
+        this.canvas.ontouchmove = (evt) => {
+            const loc = evt.touches[0]
+            this.canvas.onmousemove(loc)
+        }
+
+        this.canvas.ontouchend = () => {
+            this.canvas.onmouseup(loc)
+        }
+
+        // undo btn
+        this.undoBtn.onclick = (evt) => {
+            this.paths.pop()
+            this.#reDraw()
         }
     }
 
@@ -63,6 +102,12 @@ class SketchPad {
         this.ctx.clearRect(0,0, this.canvas.width, this.canvas.height)
         
         // call the draw util object to actually draw on the canvas
-        draw.path(this.ctx, this.path)
+        draw.paths(this.ctx, this.paths)
+
+        if(this.paths.length > 0) {
+            this.undoBtn.disabled = false
+        } else {
+            this.undoBtn.disabled = true
+        }
     }
 }

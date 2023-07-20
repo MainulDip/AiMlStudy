@@ -18,6 +18,18 @@ class SketchPad {
         // getting canvas 2d context
         this.ctx = this.canvas.getContext("2d")
 
+        // resetting paths
+        this.reset()
+        
+        // call an event listener
+        this.#addEventListeners();
+
+        
+        
+    }
+
+    // reset() called from creator.html
+    reset() {
         // set some class property and populate them from those listeners
         this.paths = []
         this.isDrawing = false
@@ -25,11 +37,6 @@ class SketchPad {
         // prevent the undo button from being activated
         this.#reDraw()
 
-        // call an event listener
-        this.#addEventListeners();
-
-        
-        
     }
 
     // hash "#" denotes it as private method

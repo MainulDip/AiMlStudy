@@ -69,7 +69,8 @@ class SketchPad {
             }
         }
 
-        this.canvas.onmouseup = () => {
+        // changed to this.canvas to document to prevent out of canvas drawing
+        document.onmouseup = () => {
             this.isDrawing = false
         }
 
@@ -84,8 +85,9 @@ class SketchPad {
             this.canvas.onmousemove(loc)
         }
 
-        this.canvas.ontouchend = () => {
-            this.canvas.onmouseup(loc)
+        // changed to this.canvas to document to prevent out of canvas drawing
+        document.ontouchend = () => {
+            document.onmouseup()
         }
 
         // undo btn

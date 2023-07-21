@@ -49,7 +49,7 @@ fileNames.forEach( fn => { // fn for filename
 
     // creating img file based on each paths
     generateImageFile(
-      constants.IMG_DIR + "/" + id + ".png"
+      constants.IMG_DIR + "/" + id + ".png", paths
     )
 
     id++ 
@@ -62,9 +62,12 @@ fs.writeFileSync(constants.SAMPLES, JSON.stringify(samples))
 function generateImageFile(outFile, paths) {
   ctx.clearRect(0,0, canvas.width, canvas.height)
 
-  draw.paths(ctx, paths) // image will be drawn on the ctx, so can grab later through canvas itself
+  // image will be drawn on the ctx, so can grab later through canvas itself
+  draw.paths(ctx, paths) 
+  
+  // converting into buffer
+  const buffer = canvas.toBuffer("image/png") 
 
-  const buffer = canvas.toBuffer("image/png") // converting into buffer
   fs.writeFileSync(outFile, buffer)
 }
 

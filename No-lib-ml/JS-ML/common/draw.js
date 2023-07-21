@@ -34,3 +34,9 @@ draw.paths = (ctx, paths, color="black") => {
         draw.path(ctx, path, color)
     }
 }
+
+
+// preventing browsers as module.exports is a node.js specific feature
+if(typeof module!=='undefined'){
+    module.exports = draw
+ }

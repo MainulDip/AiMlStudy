@@ -20,3 +20,27 @@ The collected data (images) are inside raw directory in json format. Each json f
     ]
 }
 ```
+
+### Grouping Large Data:
+```js
+// GroupBy Sorting. Like send the object array and label as key
+utils.groupBy = (objArray, key) => {
+    const groups = {}
+    for ( let obj of objArray ) {
+        
+        const val = obj[key] // getting value by key, ie: label or student_id session number
+        
+        // assigning empty array when groups[key] is initialized as object property
+        if (groups[val] == null ) {
+            groups[val] = []
+        }
+
+        // then push value to the array for matching iteration 
+        groups[val].push(obj)
+        /**
+         * Signature: groups = { 1234: [{},{}], 2345: [{},{}], ...}
+         */
+    }
+
+    return groups
+}

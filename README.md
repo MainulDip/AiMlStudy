@@ -21,4 +21,4 @@ Data: Combination of all the Features and lables (traning phase).
     It has both Features and Lable data for model traning. Most common type.
 
 - Reinforcement Learning :
-    When we have no data (Features and lable). Agent, Environment, Exploring and Reward (Negative and Positive). The practicality is to let A.I to play games. 
+    When we have no data (Features and lable). Agent, Environment, Exploring and Reward (Negative and Positive). The practicality is to let A.I to play

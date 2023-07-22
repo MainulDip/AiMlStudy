@@ -1,5 +1,8 @@
 const utils = {}
 
+utils.flaggedUsers=
+   [1663882102141,1663900040545,1664485938220]; // drew nsfw
+
 utils.printProgress = (count, max) => {
     process.stdout.clearLine()
     process.stdout.cursorTo(0)

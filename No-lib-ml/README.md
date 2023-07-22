@@ -26,13 +26,38 @@
 ### Directory Overview:
 * web : front-end part.
     - creator.html : starting point. Initialize the sketchpad.js by passing the container as id.
-    - js/sketchpad.js provide the drawing canvas functionality. It calls draw.js. Note: ctx is the canvas context.
+    - js/sketchpad.js provide the drawing canvas functionality. It calls draw.js. Note: ctx is the canvas context
 
+### Grouping Large Data:
+```js
+// GroupBy Sorting. Like send the object array and label as key
+utils.groupBy = (objArray, key) => {
+    const groups = {}
+    for ( let obj of objArray ) {
+        
+        const val = obj[key] // getting value by key, ie: label or student_id session number
+        
+        // assigning empty array when groups[key] is initialized as object property
+        if (groups[val] == null ) {
+            groups[val] = []
+        }
+
+        // then push value to the array for matching iteration 
+        groups[val].push(obj)
+        /**
+         * Signature: groups = { 1234: [{},{}], 2345: [{},{}], ...}
+         */
+    }
+
+    return groups
+}
+```
 ### Progress (Until):
 * Code Implementation From Scratch:
     - 22.09 (round path join)
     - 31.47
     - 44.53
     - 01.02.47
+    - 01.12.46
 * Copied Over:
 * Watched and Noted:2.49.47

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Data Viewer</h1>
+    <div id="container"></div>
+    
+    <script src="../common/js_objects/samples.js"></script>
+    <script src="../common/constants.js"></script>
+    <script src="../common/utils.js"></script>
+
+    <script>
+        // id: 1, label: "car", student_id: 1663053145814, student_name: "Radu"
+        const groups = utils.groupBy(samples, "student_id")
+    </script>
+</body>
+</html>

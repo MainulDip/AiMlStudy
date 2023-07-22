@@ -13,6 +13,6 @@ constants.JS_OBJECTS="../common/js_objects";
 // samples for feeding into web (frontend)
 constants.SAMPLES_JS=constants.JS_OBJECTS+"/samples.js";
 
-if (module != undefined) {
+if (typeof module!=='undefined') {
     module.exports = constants
 }

@@ -8,8 +8,10 @@
 </head>
 <body>
     <h1>Data Viewer</h1>
+    <div id="chartContainer"></div>
     <div id="container"></div>
     
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="../common/js_objects/features.js"></script>
     <script src="../common/constants.js"></script>
     <script src="../common/utils.js"></script>
@@ -29,8 +31,46 @@
             
             // create the table UI on the given container
             createRow(container, studentName, samples) // comes form js/display.js
-            console.log(student_id)
+            // console.log(student_id)
         }
+
+        // google chart setup
+        const options = {
+            width: 400,
+            height: 400,
+            hAxis: {title: featureNames[0]},
+            vAxis: {title: featureNames[1]},
+            legend: {position: 'none'},
+            explorer: {
+                maxZoomIn: 0.01,
+                actions: ['dragToZoom', 'rightClickToReset']
+            }
+        }
+
+            // Load the Visualization API and the corechart package.
+        google.charts.load('current', {'packages':['corechart']});
+
+        // Set a callback to run when the Google Visualization API is loaded.
+        google.charts.setOnLoadCallback(drawChart);
+
+        // Callback that creates and populates a data table
+        function drawChart() {
+
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('number', featureNames[0]);
+            data.addColumn('number', featureNames[1]);
+            data.addColumn({'type': 'string', 'role': 'style'})
+            data.addRows(samples.map(s=>[
+                ...s.point,
+                utils.styles[s.label]
+            ]))
+
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.ScatterChart(document.getElementById('chartContainer'));
+            chart.draw(data, options);
+        }
+
     </script>
 </body>
 </html>

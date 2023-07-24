@@ -10,12 +10,14 @@
     <h1>Data Viewer</h1>
     <div id="container"></div>
     
-    <script src="../common/js_objects/samples.js"></script>
+    <script src="../common/js_objects/features.js"></script>
     <script src="../common/constants.js"></script>
     <script src="../common/utils.js"></script>
     <script src="js/display.js"></script>
 
     <script>
+        const {samples, featureNames} = features
+
         // id: 1, label: "car", student_id: 1663053145814, student_name: "Radu"
         const groups = utils.groupBy(samples, "student_id") // inside utils.js
 

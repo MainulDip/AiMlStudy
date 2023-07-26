@@ -11,11 +11,15 @@
     <div id="chartContainer"></div>
     <div id="container"></div>
     
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> -->
     <script src="../common/js_objects/features.js"></script>
     <script src="../common/constants.js"></script>
     <script src="../common/utils.js"></script>
     <script src="js/display.js"></script>
+    <!-- Custom Chart instead of google chart  -->
+    <script src="./chart/chart.js"></script>
+    <script src="./chart/graphics.js"></script>
+    <script src="./chart/math.js"></script>
 
     <script>
         const {samples, featureNames} = features
@@ -36,40 +40,17 @@
 
         // google chart setup
         const options = {
-            width: 400,
-            height: 400,
-            hAxis: {title: featureNames[0]},
-            vAxis: {title: featureNames[1]},
-            legend: {position: 'none'},
-            explorer: {
-                maxZoomIn: 0.01,
-                actions: ['dragToZoom', 'rightClickToReset']
-            }
+            size: 400,
+            axesLabels: featureNames,
+            styles: utils.styles,
+            transparency: 0.7,
+            icon: "image"
         }
 
-            // Load the Visualization API and the corechart package.
-        google.charts.load('current', {'packages':['corechart']});
+        // generate image instead of emojis to feed the custom chart
+        graphics.generateImages(utils.styles);
 
-        // Set a callback to run when the Google Visualization API is loaded.
-        google.charts.setOnLoadCallback(drawChart);
-
-        // Callback that creates and populates a data table
-        function drawChart() {
-
-            // Create the data table.
-            var data = new google.visualization.DataTable();
-            data.addColumn('number', featureNames[0]);
-            data.addColumn('number', featureNames[1]);
-            data.addColumn({'type': 'string', 'role': 'style'})
-            data.addRows(samples.map(s=>[
-                ...s.point,
-                utils.styles[s.label]
-            ]))
-
-            // Instantiate and draw our chart, passing in some options.
-            var chart = new google.visualization.ScatterChart(document.getElementById('chartContainer'));
-            chart.draw(data, options);
-        }
+        const chart = new Chart(chartContainer, samples, options, handleClick) // handleClick is declared inside display.js
 
     </script>
 </body>

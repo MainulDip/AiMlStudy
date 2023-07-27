@@ -1,14 +1,14 @@
-const features = {}
+const featureFunctions = {}
 
-features.getPathCount = (paths) => {
+featureFunctions.getPathCount = (paths) => {
     return paths.length
 }
 
-features.getPointCount = (paths) => {
+featureFunctions.getPointCount = (paths) => {
     const points = paths.flat() // converting multidimensional array into single dimensional array
     return points.length
 }
 
 if (typeof module !== 'undefined') {
-    module.exports = features
+    module.exports = featureFunctions
 }

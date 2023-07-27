@@ -1,10 +1,10 @@
 const constants = require('../common/constants.js')
-const features = require('../common/features.js')
+const featureFunctions = require('../common/featureFunctions.js')
 
 const fs = require('fs')
 
 
-console.log("Extracting Features Start")
+console.log("Extracting featureFunctions Start")
 
 const samples = JSON.parse(fs.readFileSync(constants.SAMPLES)) // form data/dataset/sample.json
 
@@ -13,8 +13,8 @@ for (const sample of samples) {
 
     // adding new a prop as inside every sample object, which will change the samples object itself and can be grabbed using the sample object
     sample.point = [
-        features.getPathCount(paths),
-        features.getPointCount(paths)
+        featureFunctions.getPathCount(paths),
+        featureFunctions.getPointCount(paths)
     ]
 }
 

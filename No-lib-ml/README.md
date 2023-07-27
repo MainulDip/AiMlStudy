@@ -61,9 +61,14 @@ utils.groupBy = (objArray, key) => {
     - 01.12.46
     - 01.30.07
     - 01.37.47
-    - 01.47.09
+    - 02.01.47
 * Copied Over:
 * Watched and Noted:2.49.47
 
 ### Feature Extraction:
 Dir: common/features.js && node/feature_extractor.js
+
+### Smart Data Inspection | Fast and Responsive:
+To inspect the data on before and during feature extraction, it's best to build a responsive system so the inspection can be fast/quick and responsive. So that the best understanding can be achieved with in shortest period of time, also bug free.
+
+Make as much as automated possible. Because Manual inspection (like finding through id in filesystem) could be show and buggy.

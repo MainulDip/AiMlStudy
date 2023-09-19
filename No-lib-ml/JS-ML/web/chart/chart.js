@@ -41,6 +41,11 @@ class Chart{
       this.#addEventListeners();
    }
 
+   showDynamicPoint(point) {
+      this.dynamicPoint = point
+      this.#draw()
+   }
+
    #addEventListeners(){
       const {canvas,dataTrans,dragInfo}=this;
       canvas.onmousedown=(evt)=>{

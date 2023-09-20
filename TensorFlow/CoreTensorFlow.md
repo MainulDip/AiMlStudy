@@ -61,7 +61,7 @@ y_eval = dfeval.pop('survived')
 print(dftrain.loc[0], y_eval.loc[0])
 ```
 
-### Training vs Testing Data:
+### Training vs Testing Data
 we loaded two different datasets (csv) above. This is because when we train models, we need two sets of data: training and testing.
 
 The training data is what we feed to the model so that it can develop and learn. It is usually a much larger size than the testing data.

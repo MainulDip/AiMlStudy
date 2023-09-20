@@ -16,7 +16,7 @@ _
 Data Types Include: float32, int32, string and others.
 Shape: Represents the dimension of data.
 
-### Creating Tensors:
+### Creating Tensors
 ```py
 string = tf.Variable("this is a string", tf.string) 
 number = tf.Variable(324, tf.int16)

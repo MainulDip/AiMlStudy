@@ -47,3 +47,4 @@ conda env create -f=env.yml
 - new cell above the current cell : form cmd mode (esc) press a
 - new cell bellow : from cmd mode (esc) press b
 - manually save : from cmd mode (esc) press s.
+- delete cell : from cmd mode press dd

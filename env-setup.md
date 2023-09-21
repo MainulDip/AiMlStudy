@@ -37,7 +37,13 @@ conda env export > env.yml
 # installing conda env form a file name env.yml
 conda env create -f=env.yml
 ```
-
 ### Jupyter Notebook:
+- jupyter notebook's code runs on execution (run) sequence and the number before the cell indicate the order of execution.
 - shift + enter to run a specific cell
-- 
+- enter into command mode : esc
+    - from cmd mode switch to markdown mode : m
+    - from cmd mode switch to code : y
+- intelligence : tab
+- new cell above the current cell : form cmd mode (esc) press a
+- new cell bellow : from cmd mode (esc) press b
+- manually save : from cmd mode (esc) press s.

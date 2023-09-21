@@ -66,4 +66,4 @@ Machine Learning Depends on Data Science to get better understanding of the unde
  6.  Experimentation: How could we improve
 * Deployment
 
-### Machine Learning Models (Algorithm)
+### Machine Learning Models (Algorithm):

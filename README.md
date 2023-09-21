@@ -55,6 +55,14 @@ Machine Learning Depends on Data Science to get better understanding of the unde
     - Model selection:
         - For Structured Data : CatBoost, dmlc XGBoost, Random Forest work best
         - For Unstructured Data : Deep Learning / Neural Network, Transfer Learning Work best.
+    - testing: 
+        - Balanced (Gold-i-locks zone) : Training prediction 98% vs Test Prediction 96%. It's an iterative steeps to reach this stage
+        - Under-fitting: 64% (training data prediction) vs 47% test data prediction. When model is trained less or loosely
+        - Over-fitting: Training 93% vs Test 99%. This means the model is over trained (the model is behaving explicitly with the dataset)
+        - To solve : Use more advanced model, increase model hyperparameter, Reduce amount of features, Train longer, collect more data or use less advanced model
+    NB: 
+    - Over-fitting and Under-fitting: this happens then there is some data leakage (Overlap between Training Data and Test Data). Training data, validation data and test data should be well separated.. 
+    - Data Mismatch: When different kind of data are used in Training/Test Stage. The data should be same kind
  6.  Experimentation: How could we improve
 * Deployment
 

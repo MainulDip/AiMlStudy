@@ -44,7 +44,7 @@ Machine Learning Depends on Data Science to get better understanding of the unde
     - Static Data: Non changing data, like csv data
     - Streaming Data: Changing Data, like Stock 
  3. Evaluation: What defines success of us? Find out the best model to get at least 90% accuracy to do prediction.
- 4. Features: What do we already know about the data? Features help us find pattern to get a prediction.
+ 4. Features: What do we already know about the data? Features help us find pattern to get a prediction
     - Numerical Features (numbers)
     - Categorical features (like person's sex, race, etc)
     - Derived Features || Feature Engineering : Creating new features from the data

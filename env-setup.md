@@ -33,7 +33,6 @@ ctrl+c
 # Store conda env on a yml file to use on another machine (activate the environment first)
 conda env export > env.yml
 
-
 # installing conda env form a file name env.yml
 conda env create -f=env.yml
 ```

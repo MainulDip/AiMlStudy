@@ -47,3 +47,7 @@ conda env create -f=env.yml
 - new cell bellow : from cmd mode (esc) press b
 - manually save : from cmd mode (esc) press s.
 - delete cell : from cmd mode press dd.
+
+### Jupyter Notebook Code Intellisense:
+- tab : code suggestion
+- shift + tab : docs

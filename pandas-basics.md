@@ -169,7 +169,7 @@ car_sale_shuffed
 
 ### apply(lambda) and column rename:
 ```py
-# changing existing colums value using applay and lambda(annonymous fn)
+# changing existing colum value using apply and lambda(anonymous fn)
 car_sales_mod["Mileage"] = car_sales_mod["Mileage"].apply(lambda x: x * 1.61)
 car_sales_mod
 

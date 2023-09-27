@@ -4,7 +4,7 @@
 - Mini Conda : Software Distribution, timed down version of the Anaconda. MiniConda only includes Conda and Python.
 
 ### MiniConda Installation Linux:
-- Download the installer (Miniconda3-latest-Linux-x86_64.sh)
+- Download the installer (Miniconda3-latest-Linux-x86_64.sh).
 - run "bash Miniconda3-latest-Linux-x86_64.sh" then press "enter" to enter into license agreement, then press "q" and enter "Yes" to accept.
 - Check : run "conda list" to check the installation by reopening the terminal
 ### New Projects:

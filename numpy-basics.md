@@ -21,7 +21,7 @@ Another way of finding pattern between 2 sets of numbers
     - New size is same as outside number
     - Outside & Inside: if (5,3) x (3,5) : both 5 are outside and both 3 are inside
 
-Matrix multiplication operation (3,3) x (3,2) = (3,2)
+Matrix multiplication operation (3,3) x (3,2) = (3,2).
 
 |   |3,3|   |  .dot |   |   |        |          |          |
 |---|---|---|-------|---|---|--------|----------|----------|

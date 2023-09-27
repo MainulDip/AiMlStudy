@@ -14,7 +14,7 @@ Numpy (Numerical Python) is written in c, that's why it's way faster than python
 - Use Cases
 
 ### NumPy Dot product:
-Another way of finding pattern between 2 sets of numbers.
+Another way of finding pattern between 2 sets of numbers
 
 - Rules:
     - Number (shape) on the inside (horizontal) must match vertical shape of the other array. (3,3)x(3,2) || (5,3)x(3,5) will match, but (3,5)x(3,5) will not

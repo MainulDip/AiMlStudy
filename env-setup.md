@@ -35,6 +35,13 @@ conda env export > env.yml
 
 # installing conda env form a file name env.yml
 conda env create -f=env.yml
+
+# check version and upgrade packages (activate the environment first)
+conda list
+conda list <package-name>
+conda search <package-name> # check the suggested update version
+conda update <package-name>
+conda uninstall <package-name> <package-name> <package-name>
 ```
 ### Jupyter Notebook:
 - jupyter notebook's code runs on execution (run) sequence and the number before the cell indicate the order of execution.

@@ -11,4 +11,4 @@ Scikit-Learn (sklearn) is a python machine learning library.
 - fit the model to the data and make a prediction
 - evaluate the model
 - improve through experimentation
-- save and reload trained model
+- save and reload trained modelss

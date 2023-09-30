@@ -4,7 +4,7 @@ Numpy (Numerical Python) is written in c, that's why it's way faster than python
 - Vectorization via broadcasting (avoiding loops)
 - Backbone of Python scientific packages as well as AI/ML
 
-### Topics
+### Topics:
 - most used functions
 - NumPy Data Types and attributes (ndarray)
 - Creating array

@@ -1,7 +1,7 @@
 ### Numpy vs Python List:
 Numpy (Numerical Python) is written in c, that's why it's way faster than python's list in terms of list related operations (heavy/large-scale computation). 
 - behind the scenes optimization written in C
-- Vectorization via broadcasting (avoiding loops)
+- Vectorization via broadcasting (avoiding loops).
 - Backbone of Python scientific packages as well as AI/ML
 
 ### Topics:

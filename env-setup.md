@@ -44,7 +44,7 @@ conda update <package-name>
 conda uninstall <package-name> <package-name> <package-name>
 ```
 ### Jupyter Notebook:
-- jupyter notebook's code runs on execution (run) sequence and the number before the cell indicate the order of execution.
+- jupyter notebook's code runs on execution (run) sequence and the number before the cell indicate the order of execution
 - shift + enter to run a specific cell
 - enter into command mode : esc
     - from cmd mode switch to markdown mode : m

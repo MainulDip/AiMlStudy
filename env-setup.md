@@ -58,7 +58,7 @@ conda uninstall <package-name> <package-name> <package-name>
 ### Jupyter Notebook Code Intellisense:
 - tab : code suggestion
 - shift + tab : docs
-### Jupyter Notebook Bash/Sh commands
+### Jupyter Notebook Bash/Sh commands:
 - !<any command>
 - !ls # will return list directory command
 ### Install conda package from Jupyter Notebook:

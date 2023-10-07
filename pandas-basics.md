@@ -69,7 +69,7 @@ car_sales.Brand
 # [] notation can receive column name with space
 car_sales["Engine Type"]
 
-# accessing multiple column
+# accessing multiple columns
 car_sales[["Engine Type", "Another Column"]]
 ```
 

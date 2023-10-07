@@ -33,10 +33,11 @@ ctrl+c
 # Store conda env on a yml file to use on another machine (activate the environment first)
 conda env export > env.yml
 
-conda env export --ignore-channels --from-history > env-x.yml
+# exporting environment yml file as cross-platform compatibility only with core packages (change the name and delete prefix from the exported yml file )
+conda env export --ignore-channels --from-history > shared-env-file.yml
 
 # installing conda env form a file name env.yml
-conda env create -f=env.yml
+conda env create -f shared-env-file.yml -p ./target-directory-path
 
 # check version and upgrade packages (activate the environment first)
 conda list

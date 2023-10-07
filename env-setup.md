@@ -69,3 +69,13 @@ conda uninstall <package-name> <package-name> <package-name>
 import sys
 !conda install --yes --prefix {sys.prefix} seaborn
 ```
+### Google Colab Workflow:
+Google colab is a virtualized Jupyter Notebook Environment.
+* Uploading File: Better to upload through the Google Drive Interface
+* Mounting Drive: Mount the drive through Colab Interface 
+* Unzipping:
+```sh
+# get the file location by copying the path 
+# !unzip "files-path" -d "unzipping-destination"
+!unzip "drive/MyDrive/Colab Notebooks/Data/dog-breed-identification.zip" -d "drive/MyDrive/Colab Notebooks/Data/model-dog-breed-identification/"
+```

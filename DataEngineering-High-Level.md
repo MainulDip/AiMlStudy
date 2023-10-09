@@ -4,7 +4,7 @@ A high level overview and workflow as Data Engineers.
 ### Scope:
 Data Engineers Pull data from different sources and organize (structure) them for further use.
 ### Data Types:
-* Structured Data: Relational DB.
+* Structured Data: Relational DataBases.
 * Semi Structured Data: XML, CSV, JSON
 * Unstructured Data: PDFs, Emails, Other Doc format
 * Binary Data: Media files || its harder to organize or categorized 

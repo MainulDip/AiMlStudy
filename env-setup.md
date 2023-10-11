@@ -74,7 +74,7 @@ import sys
 Google colab is a virtualized Jupyter Notebook Environment.
 * Uploading File: Better to upload through the Google Drive Interface
 * Mounting Drive: Mount the drive through Colab Interface 
-* Unzipping
+* Unzipping.
 ```sh
 # get the file location by copying the path 
 # !unzip "files-path" -d "unzipping-destination"

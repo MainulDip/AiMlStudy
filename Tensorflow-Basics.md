@@ -18,7 +18,7 @@ Y = Summation-of ( weight + input ) + b
 
 Note: https://wiki.pathmind.com/neural-network
 
-### Keras vs TensorFlow Core APIs:
+### Keras vs TensorFlow Core APIs :
 Keras is the high-level API of the TensorFlow platform. Keras covers every step of the machine learning workflow, from data processing to hyperparameter tuning to deployment. Every TensorFlow user should use the Keras APIs by default Unless Very Low Level Access.
 
 * Tensorflow Core APIs: It's the low-level APIs. For building more complex workflow like building tools on top of TensorFlow or developing custom high-performance platform, the Low Level APIs provide better control. Unless that Keras can do all the regular workflow tasks.

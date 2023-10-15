@@ -64,57 +64,28 @@ conda uninstall <package-name> <package-name> <package-name>
 * https://docs.nvidia.com/cuda/wsl-user-guide/index.html
 * https://learn.microsoft.com/en-us/windows/wsl/basic-commands
 
-- WSL list installed distributions and log into : `wsl --list` and `wsl -d Ubuntu -u username` 
-- WSL Shutdown : wsl --shutdown
+First Part : Host Setup ----------------------------------
+- install latest graphics driver on host machine
+
+Second Part : WSL Setup: ---------------------------------
 
 After installing, within wls2, move forward with Conda environment
-1. Install latest version of 
-2. Create and activate a conda environment `conda create -p ./env tensorflow-gpu jupyter` or `conda create -p ./env -c conda-forge tensorflow-gpu`
-3. Install Tensorflow, Tensorflow-Hub Using pip `pip install --upgrade tensorflow tensorflow_hub` and `conda install pandas numpy matplotlib scikit-learn jupyter`
-4. Install cuda in conda env with nvidia channel `conda install cuda -c nvidia`
+1. Install Tensorflow Specified Version of CUDA Tool kit
+2. Install Tensorflow Specified Version of CUDNN (Cuda Neural Network)
+3. Install Matching TensorRT against `Cuda Toolkit` From Nvidia
 
-```sh
-conda create -p ./env python=3.9
-```
-# Next options: Start fresh
+Third Part : Conda Setup on WSL
+1. Create empty conda env with specified python version `conda create -p ./env python=3.9`
+2. Install pip through conda to use pip inside conda environment `conda install pip`
+3. Now install all Tensorflow and other packages as docs suggest
+4. Install Jupyter Notebook `pip install notebook` and run using `jupyter notebook`
+
+### Frequently Used WSL Commands:
+- WSL list installed distributions and log into : `wsl --list` and `wsl -d Ubuntu -u username` 
+- WSL Shutdown : wsl --shutdown
 - delete distro Ubuntu `wsl --unregister <distroName> where <distroName>`
-- create new destro
-- install nvidia cuda toolkit 11.8
-- install cudnn 8.6
-- download the file
-- install : sudo dpkg -i cudnn-local-repo-ubuntu2204-8.6.0.163_1.0-1_amd64.deb
-- gpg key
-- update
-- runtime install : sudo apt-get install libcudnn8=8.6.0.163-1+cuda11.8
-- dev lib install : sudo apt-get install libcudnn8-dev=8.6.0.163-1+cuda11.8
-- code samples : sudo apt-get install libcudnn8-samples=8.6.0.163-1+cuda11.8
-- 
 
-TensorRT Installation
-```sh
-
-nv-tensorrt-local-repo-ubuntu2204-8.6.1-cuda-11.8_1.0-1_amd64.deb
-
-os="ubuntu2204"
-tag="8.6.1-cuda-11.8"
-sudo dpkg -i nv-tensorrt-repo-${os}-${tag}_1-1_amd64.deb
-sudo apt-key add [follow instruction from previous command's output]
-
-sudo apt-get update
-sudo apt-get install tensorrt
-
-sudo apt-get install python3-libnvinfer-dev
-
-dpkg -l | grep TensorRT
-```
-
-`sudo dpkg -i cuda-repo-wsl-ubuntu-11-8-local_11.8.0-1_amd64.deb`
-
-`sudo cp /var/cuda-repo-wsl-ubuntu-11-8-local/cuda-*-keyring.gpg /usr/share/keyrings/`
-- create conda python=3.9
-- `pip install --upgrade pip` and `pip install tensorflow[and-cuda]`
-
-Verify in Jupyter Notebook's Cell
+### Verify If Tensorflow is using GPU :
 ```python
 # Import Tensorflow
 import tensorflow as tf
@@ -125,11 +96,7 @@ print("TF version:", tf.__version__)
 # Check For GPU availability (o use GPU change Runtime to GPU)
 print("GPU", "available (Yess!!!!!!!!)" if tf.config.list_physical_devices("GPU") else "not Available")
 ```
-
-
-
-
-### Tensorflow GPU Docker Compose:
+## Tensorflow GPU Docker Compose (Not Verified Locally Yet):
 ```yml
 #version: "3.3"
 

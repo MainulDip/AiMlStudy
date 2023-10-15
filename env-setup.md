@@ -7,6 +7,10 @@
 - Download the installer (Miniconda3-latest-Linux-x86_64.sh).
 - run "bash Miniconda3-latest-Linux-x86_64.sh" then press "enter" to enter into license agreement, then press "q" and enter "Yes" to accept.
 - Check : run "conda list" to check the installation by reopening the terminal
+
+### Conda Config:
+- Windows Env Var: run `where conda` in anaconda/miniconda terminal and add those path to the system environmental variable path
+- run `conda init bash` or `conda init <shell-interface>` to run `conda activate env-name`
 ### New Projects:
 ```sh
 # cd into project dir and run
@@ -15,8 +19,15 @@ conda create --prefix ./env pandas numpy matplotlib scikit-learn jupyter
 # from the project root run this to separate the project file form env file, run pwd for current folder location
 conda activate ./env
 
+# Tensorflow (GPU) in conda environment
+# Install cuda toolkit
+# Install cuda inside conda env with nvidia channel
+conda install cuda -c nvidia
+conda create -p ./env tensorflow-gpu pandas numpy matplotlib scikit-learn jupyter 
+
 # install jupyter notebook if not before
 conda install jupyter
+conda install tensorflow-gpu
 
 # run jupyter notebook cmd from the root of the project to start
 jupyter notebook
@@ -46,6 +57,98 @@ conda search <package-name> # check the suggested update version
 conda update <package-name>
 conda uninstall <package-name> <package-name> <package-name>
 ```
+
+### Tensorflow in Anaconda/Miniconda Jupyter (Only Nvidia's CUDA Enabled GPUs):
+* Note: Tensorflow latest release (GPU) is only officially compatible with Ubuntu or Via `Windows WSL2`. Follow official Doc for installation
+* Install the exact version of GPU packages, follow https://www.tensorflow.org/install/pip#windows-wsl2_1
+* https://docs.nvidia.com/cuda/wsl-user-guide/index.html
+* https://learn.microsoft.com/en-us/windows/wsl/basic-commands
+
+- WSL list installed distributions and log into : `wsl --list` and `wsl -d Ubuntu -u username` 
+- WSL Shutdown : wsl --shutdown
+
+After installing, within wls2, move forward with Conda environment
+1. Install latest version of 
+2. Create and activate a conda environment `conda create -p ./env tensorflow-gpu jupyter` or `conda create -p ./env -c conda-forge tensorflow-gpu`
+3. Install Tensorflow, Tensorflow-Hub Using pip `pip install --upgrade tensorflow tensorflow_hub` and `conda install pandas numpy matplotlib scikit-learn jupyter`
+4. Install cuda in conda env with nvidia channel `conda install cuda -c nvidia`
+
+```sh
+conda create -p ./env python=3.9
+```
+# Next options: Start fresh
+- delete distro Ubuntu `wsl --unregister <distroName> where <distroName>`
+- create new destro
+- install nvidia cuda toolkit 11.8
+- install cudnn 8.6
+- download the file
+- install : sudo dpkg -i cudnn-local-repo-ubuntu2204-8.6.0.163_1.0-1_amd64.deb
+- gpg key
+- update
+- runtime install : sudo apt-get install libcudnn8=8.6.0.163-1+cuda11.8
+- dev lib install : sudo apt-get install libcudnn8-dev=8.6.0.163-1+cuda11.8
+- code samples : sudo apt-get install libcudnn8-samples=8.6.0.163-1+cuda11.8
+- 
+
+TensorRT Installation
+```sh
+
+nv-tensorrt-local-repo-ubuntu2204-8.6.1-cuda-11.8_1.0-1_amd64.deb
+
+os="ubuntu2204"
+tag="8.6.1-cuda-11.8"
+sudo dpkg -i nv-tensorrt-repo-${os}-${tag}_1-1_amd64.deb
+sudo apt-key add [follow instruction from previous command's output]
+
+sudo apt-get update
+sudo apt-get install tensorrt
+
+sudo apt-get install python3-libnvinfer-dev
+
+dpkg -l | grep TensorRT
+```
+
+`sudo dpkg -i cuda-repo-wsl-ubuntu-11-8-local_11.8.0-1_amd64.deb`
+
+`sudo cp /var/cuda-repo-wsl-ubuntu-11-8-local/cuda-*-keyring.gpg /usr/share/keyrings/`
+- create conda python=3.9
+- `pip install --upgrade pip` and `pip install tensorflow[and-cuda]`
+
+Verify in Jupyter Notebook's Cell
+```python
+# Import Tensorflow
+import tensorflow as tf
+# import tensorflow_hub as hub
+print("TF version:", tf.__version__)
+# print("TF Hub version:", hub.__version__)
+
+# Check For GPU availability (o use GPU change Runtime to GPU)
+print("GPU", "available (Yess!!!!!!!!)" if tf.config.list_physical_devices("GPU") else "not Available")
+```
+
+
+
+
+### Tensorflow GPU Docker Compose:
+```yml
+#version: "3.3"
+
+services:
+  jupyter:  # you can change this to whatever you want.
+    container_name: computer-vison
+    image: tensorflow/tensorflow:2.2.2-gpu-py3-jupyter
+    volumes:
+      - "./:/tf/notebooks"
+    ports:
+     - "8888:8888"
+    deploy:
+      resources:
+        reservations:
+          devices:
+          -  driver: nvidia
+             count: all
+             capabilities: [gpu]
+```
 ### Jupyter Notebook:
 - jupyter notebook's code runs on execution (run) sequence and the number before the cell indicate the order of execution.
 - shift + enter to run a specific cell
@@ -58,6 +161,7 @@ conda uninstall <package-name> <package-name> <package-name>
 - manually save : from cmd mode (esc) press s.
 - delete cell : from cmd mode press dd.
 
+jupyter notebook --no-browser --ip=192.168.0.12 --port=7000
 ### Jupyter Notebook Code Intellisense:
 - tab : code suggestion
 - shift + tab : docs

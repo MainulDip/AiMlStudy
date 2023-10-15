@@ -59,5 +59,5 @@ It's a data lake solution. Created by Yahoo and later donated to Apache. It can 
 ### Apache Flink (Real Time / Stream Processing):
 - Process data on the Fly: Data is processed while streamed, so no precessing over head or batch processing after.
 
-### Apache Kafka (Stream/Real-time Processing):
+### Apache Kafka (Stream/Real-time Processing) :
 Apache Kafka is an open-source distributed event streaming platform. It can receive raw data from different data sources, then precess and/or pass different locations/clusters.

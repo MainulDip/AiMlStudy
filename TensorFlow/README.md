@@ -38,7 +38,7 @@ tf.rank(rank2_tensor) # <tf.Tensor: shape=(), dtype=int32, numpy=2>
 #rank2_tensor.shape # TensorShape([3, 2])
 ```
 
-### Changing Shape ro Dimention
+### Changing Shape or Dimension
 
 ```py
 tensor1 = tf.ones([1,2,3])  # tf.ones() creates a shape [1,2,3] tensor full of ones (6 elements of 1)

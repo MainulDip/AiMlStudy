@@ -1,7 +1,7 @@
 ### Back Propagation:
 ### Pytorch Autograd: 
 ### vector-Jacobian product:
-### derivatives:
+### derivatives :
 Derivative is the measurement of slope (value) of a curve at an exact point. 
 
 slope for straight line = `Change in y` divided by `Change in x` or `delta y` / `delta x` or `dy`/`dx`. Where y is the vertical line and x is the horizontal line in a graph. 

@@ -261,7 +261,7 @@ classifier.train(
 
 The only thing to explain here is the steps argument. This simply tells the classifier to run for 5000 steps. Try modifiying this and seeing if your results change. Keep in mind that more is not always better.
 
-### Evalution:
+### Evalution :
 
 ```py
 eval_result = classifier.evaluate(

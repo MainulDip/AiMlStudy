@@ -1,7 +1,7 @@
 ### Overviews:
 Matplotlib is a python library for data visualization. It can turn data into graphs, chart, line, histogram, etc.
 
-- Built on NumPy array
+- Built on NumPy array.
 - Can Create Basic to Advanced Plots
 
 ### Topics:

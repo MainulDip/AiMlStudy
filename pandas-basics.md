@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 ```
 
 ### Pandas Data Types:
-Pandas has it's own Data Types with all python primitive Data Types
+Pandas has it's own Data Types with all python primitive Data Types.
 - Series: 1 Dimensional Data
 - Data Frame: Multi Dimensional Data
 ```py

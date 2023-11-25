@@ -13,7 +13,7 @@ Numpy (Numerical Python) is written in c, that's why it's way faster than python
 - Sorting arrays
 - Use Cases
 
-### NumPy Matrix Multiplication (Series of Dot products):
+### NumPy Matrix Multiplication (Series of Dot products)
 Another way of finding pattern between 2 sets of numbers
 
 - Rules:

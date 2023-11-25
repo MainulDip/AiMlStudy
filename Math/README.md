@@ -217,3 +217,59 @@ sigmaT = softfun(tz)
 print(sigmaT) # tensor([1.2954e-04, 3.8614e-01, 8.7281e-07, ...])
 print(torch.sum(sigmaT)) # tensor(1.)
 ```
+
+### Logarithm (inverse of exponent or find the exponent):
+The base of log is usually natural log (e), base 2 or base 10. But for ML `e` is mostly used.
+
+When plotted in graph, log has some spacial property. Like on Log Space, the scale stretches more for small/starting value change than middle or ending value. Where in linear scale are will be equally spaced. 
+
+That's why in log-space, it distinguishes small and closely spaced number. Which is helpful for optimizing probability/loss in ML as those are very small (close to zero) numbers. 
+<img src="./images-math/logarithm.png"/>
+
+Minimizing the log is computationally easier than minimizing original probability values. As calculation operations on small decimal precision are expensive computational operation.
+
+Logarithm in python and plotting
+```python
+# define a set of points to evaluate
+x = np.linspace(.0001, 1, 200)
+# print(x) # array([1.00000000e-04, 5.12462312e-03, 1.01492462e-02, 1.51738693e-02, ... 194 more])
+
+# compute it's log
+logx = np.log(x)
+
+# plotting
+fig = plt.figure(figsize=(10,6))
+
+# increase font size
+plt.rcParams.update({'font.size':15})
+
+plt.plot(x, logx, 'ks-', markerfacecolor='w')
+plt.xlabel('x')
+plt.ylabel('log(x)')
+plt.show();
+```
+
+Logarithm and Exponent with plotting
+```python
+# Demontration of log and exp are inverses
+x = np.linspace(.0001,1,20) # only 20 values for now
+
+# get log and exponent of x
+logx = np.log(x)
+expx = np.exp(x)
+
+# Plotting
+plt.plot(x,x,color=[.8,.8,.8])
+plt.plot(x, np.exp(logx), 'o', markersize=8)
+plt.plot(x, np.log(expx), 'x', markersize=8)
+plt.xlabel('x')
+plt.ylabel('f(g(x))')
+plt.legend(['unity', 'exp(log(x))', 'log(exp(x))'])
+plt.show();
+```
+
+### Entropy and Cross Entropy:
+Different meaning in different fields
+- Physics : It's the 2 law of Thermodynamics. It states, the universe (or matter) will turn into disorder from order (Unless it is 0 Kelvin of temperature by 3rd law) 
+
+- Information-Theory / Statistics [Shannon's Entropy] : it is a measure of uncertainty (or variability) associated with random variables. The entropy is maximum when probability is .5, where things are unpredictable. The entropy decrease toward 0 and 1 from than .5 (middle). Entropy is expressed by `H`.

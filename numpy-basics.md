@@ -13,7 +13,7 @@ Numpy (Numerical Python) is written in c, that's why it's way faster than python
 - Sorting arrays
 - Use Cases
 
-### NumPy Dot products:
+### NumPy Matrix Multiplication (Series of Dot products):
 Another way of finding pattern between 2 sets of numbers
 
 - Rules:
@@ -28,3 +28,12 @@ Matrix multiplication operation (3,3) x (3,2) = (3,2)
 | A | B | C |       | J | k |        | AJ+BL+CN | AK+BM+CO |
 | D | E | F |       | L | M |        | DJ+EL+FN | DK+EM+FO |
 | G | H | I |       | N | O |        | GJ+HL+IN | GK+HM+IO |
+### Imports for Jupyter Notebook:
+```python
+import numpy as np 
+import pandas as pd
+import matplotlib.pyplot as plt
+import torch
+import torch.nn as nn
+import matplotlib.pyplot as plt
+```

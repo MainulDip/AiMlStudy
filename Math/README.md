@@ -1,6 +1,16 @@
 ### Overviews:
 All about AI/ML Related Math Concepts.
 
+### Imports for Jupyter Notebook:
+```python
+import numpy as np 
+import pandas as pd
+import matplotlib.pyplot as plt
+import torch
+import torch.nn as nn
+import matplotlib.pyplot as plt
+```
+
 ### Spectral Theories in Math:
 The idea of Spectral Theories in Math is => Breaking down a complected system (decomposing) into individual simple component. Like understanding something `Complected` by breaking it into simple part.
 
@@ -152,3 +162,58 @@ print(tB.T@tC2) # making multiplication eligible by Transposing tB to match innd
 SoftMax function is expressed using `lower case sigma`. The return value of SoftMax function is always will be from 0 to 1, and sum of all value will be 1. For this special property of being between 0 and 1, it is used for probability calculation in ML.
 
 Note : e = 2.718.... as `Natural Exponent` or `Euler's number/scalar`. This a never ending number without any ending pattern
+
+* SoftMax of [1,2,3] is `sigma` = (e^1 , e^2 , e^3) / (e^1 + e^2 + e^3)
+Note: the denominator is the summation of e^n
+
+Calculation: Normally if some collection of non-negative numbers are divided each by all of the collection's sum, the result of each division will be between 0 and 1 and summation of all results will be 1. SoftMax function will work like this way but to deal with negative numbers, it requires each of all numbers to be the exponent of `e` as euler number (as it will make any number a positive integer) and then proceed.  
+
+<img src="./images-math/softmax-equation.png">
+
+Manual SoftMax Calculation in Python
+```python
+# Manual SoftMax in Numpy
+z = [1,2,3]
+num = np.exp(z)
+den = np.sum(num) # denominator will be the sum of all elements (e^1 + e^2 + e^3)
+sigma = num / den
+print(sigma) # outputs [0.09003057 0.24472847 0.66524096]
+print(np.sum(sigma)) # outputs 1.0
+```
+
+Plotting a SoftMax's Output
+```python
+# Plot of SoftMax
+z = np.random.randint(-5, high=15, size=25)
+print(z) # [ 0,  7,  9,  5,  1, -5,  8, 13,  1, -4, 13,  8, -3,  9,  7, -3,  6, 3,  8, -4, -3, 13,  3,  2,  2]
+
+# computing softmax
+num = np.exp(z)
+den = np.sum(num)
+sigma = num / den
+
+# compare
+plt.plot(z, sigma, 'ko')
+plt.xlabel('Original number (z)')
+plt.ylabel('Softmaxified $\sigma$')
+# plt.yscale('log') # using logarithmic scale
+plt.title('$\sum\sigma$ = %g' %np.sum(sigma))
+plt.show();
+```
+
+SoftMax Calculation Using `Pytorch`
+```python
+# SoftMax using pytorch
+z = np.random.randint(-5, high=15, size=25)
+# convert numpy array to torch's Tensor
+tz = torch.Tensor(z)
+print(tz) # tensor([ 2., 13.,  8.,  0., 14., 13.,  5., -2.,  5.,  7., -5., -5.,  7.,  4., -4.,  3., 12., 10.,  1., -4.,  8., 14.,  9.,  5., 12.])
+
+# create an instance of softmax activation class
+softfun = nn.Softmax(dim=0)
+
+# then apply the tersor data to the function
+sigmaT = softfun(tz)
+print(sigmaT) # tensor([1.2954e-04, 3.8614e-01, 8.7281e-07, ...])
+print(torch.sum(sigmaT)) # tensor(1.)
+```

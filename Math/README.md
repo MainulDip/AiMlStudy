@@ -272,4 +272,106 @@ plt.show();
 Different meaning in different fields
 - Physics : It's the 2 law of Thermodynamics. It states, the universe (or matter) will turn into disorder from order (Unless it is 0 Kelvin of temperature by 3rd law) 
 
-- Information-Theory / Statistics [Shannon's Entropy] : it is a measure of uncertainty (or variability) associated with random variables. The entropy is maximum when probability is .5, where things are unpredictable. The entropy decrease toward 0 and 1 from than .5 (middle). Entropy is expressed by `H`.
+- Information-Theory / Statistics [Shannon's Entropy] : it is a measure of uncertainty (or variability) associated with random variables. The entropy is maximum when probability is .5, where things are unpredictable. The entropy decrease toward probability 0 and 1 from than .5 (middle). 
+<img src="./images-math/Entropy-Shannon-1.png"/>
+<img src="./images-math/Entropy-and-CrossEntropy.png"/>
+
+`Entropy` is used to describe one probability distribution. It is expressed by `H`. `H = - n/sum/i=1 ( p(x1) * log2(p(x1)) )` NB, the `-` is there because log2(1) to log2(0) is a negative value. Short expression is `H(p) = - sum (p * log(p))`
+
+Measuring Entropy Using Log2 is called `bits` and with LogN is called `nats` 
+
+`Cross Entropy` describe relationship between 2 probability distribution. expressed by `H(p,q) = - sum (p * log(q))` . Used to characterize the performance of the model on training.
+
+* Calculate Entropy
+```python
+# probability of an event happening
+p = .25 # probability of event happening
+q = 1 - p # probability of event not happening
+
+x = [p,q]
+H = 0
+# Using for loop for summation
+for v in x:
+  H -= ( v * np.log(v) )
+print('Entropy: ' + str(H))
+
+
+# Calculate summation explicitly
+p = .25
+H = 0
+H = - (p * np.log(p) + (1-p) * np.log(1-p))
+
+print('Entropy: ' + str(H))
+```
+
+* Calculate Cross Entropy
+```python
+# Cross Entropy Calculation or Binary Cross-entropy
+# probability of an event happening
+p = [1,0] # probability of event happening before training
+q = [.25,.75] # probability of event happening after training
+
+H = 0
+# Using for loop for summation 
+for i in range(len(p)):
+  H -= p[i] * np.log(q[i])
+print('Cross Entropy: ' + str(H))
+
+
+# Calculate summation explicitly
+H = 0
+H = - ( p[0] * np.log(q[0]) + p[1] * np.log(q[1]) )
+
+print('Cross Entropy: ' + str(H))
+
+# Simplified version, as the np.log(p[1]) == 0, as p = [1,0] so the expression
+# can be simplified to
+H = 0
+H = - np.log(q[0]) 
+print('Cross Entropy: ' + str(H))
+```
+* Using Pytorch
+```python
+# Using pytorch for entropy and cross entropy calculation
+import torch
+import torch.nn.functional as F
+
+q_t = torch.Tensor(q)
+p_t = torch.Tensor(p)
+
+F.binary_cross_entropy(q_t, p_t,) # the order of parameter here are opposite from manual calculation
+```
+
+* One of the most important loss function in deep learning is `Binary Cross-entropy`
+
+### Min/Max and ArgMin/ArgMax:
+Min/Max -> are Minimum or Maximum number in a list
+ArgMin/ArgMax -> are the position/index of minimum/maximum number in a given list
+```python
+sv = [1,2,3,4]
+minarg = np.argmin(sv)
+maxarg = np.argmax(sv)
+
+# for matrix (multidimensional array), there is axis param, axis=0 for vertical (column) and axis=1 for horizontal (row)
+
+# pytorch argmin/argmax
+M = torch.Tensor([[0,1,10],[20,8,5]])
+
+min1 = torch.min(M)
+min2 = torch.min(M, axis=0)
+min3 = torch.min(M, axis=1)
+minValue = min2.values
+minIndices = min2.indices
+
+print(min1)
+print(min2)
+print(minValue)
+print(minIndices)
+
+# tensor(0.)
+# torch.return_types.min(
+# values=tensor([0., 1., 5.]),
+# indices=tensor([0, 0, 1]))
+# tensor([0., 1., 5.])
+# tensor([0, 0, 1])
+```

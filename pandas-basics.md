@@ -1,7 +1,7 @@
 ### Pandas:
 ITs a Python library used for working with data sets. It has functions for analyzing, cleaning, exploring, and manipulating data
 
-### Imports for Jupyter Notebook:
+### Imports for JupyterNotebook:
 ```python
 import numpy as np 
 import pandas as pd

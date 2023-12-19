@@ -318,7 +318,7 @@ for i in range(len(p)):
 print('Cross Entropy: ' + str(H))
 
 
-# Calculate summation explicitly
+# Calculate summation explicitly.s
 H = 0
 H = - ( p[0] * np.log(q[0]) + p[1] * np.log(q[1]) )
 
@@ -375,3 +375,19 @@ print(minIndices)
 # tensor([0., 1., 5.])
 # tensor([0, 0, 1])
 ```
+
+### Mean, Variance and Standard Deviation:
+`Mean` (Average in Math) : Its the measure of central tendency. Notation (x bar = greek later mu = mux). Formula (x bar = n^-1 * summation-of-x )
+
+<img src="./images-math/mean-or-average.png"/>
+
+`variance` or `distribution` : this is the most common way of measuring `dispersion`. Variance is kind of similar with the `standard deviation`. Express by `sigma square`
+
+variance calculation -> from a given data set (array), fist calculate the mean, then subtract the mean from each individual value of the dataset and apply square each of them. then divide by dataset count - 1 `n - 1` with the summation.
+
+
+<img src="./images-math/variance-formula.png"/>
+
+Why Squaring -> otherwise the result will be zero. By squaring we convert negative values into positive.s
+
+`Standard Deviation` = square root of the variances
